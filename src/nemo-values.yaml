@@ -1,0 +1,53 @@
+existingSecret: ngc-api
+existingImagePullSecret: nvcrimagepullsecret
+
+
+data-store:
+  enabled: true
+  external:
+    rootUrl: http://data-store.test
+    domain: data-store.test
+  persistence:
+    size: 2Gi
+
+customizer:
+  enabled: true
+  modelsStorage:
+    storageClassName: standard
+  customizationTargets:
+    overrideExistingTargets: true
+    targets:
+      meta/llama-3.2-1b-instruct@2.0:
+        enabled: true
+      meta/llama-3.1-8b-instruct@2.0:
+        enabled: true
+  customizerConfig:
+    training:
+      pvc:
+        storageClass: "standard"
+        volumeAccessMode: "ReadWriteOnce"
+
+evaluator:
+  milvus:
+    enabled: false
+
+guardrails:
+  env:
+    DEMO: "True"
+    DEFAULT_CONFIG_ID: self-check
+    NIM_ENDPOINT_URL: http://nemo-nim-proxy:8000/v1
+    FETCH_NIM_APP_MODELS: "True"
+    NVIDIA_API_KEY:
+      valueFrom:
+        secretKeyRef:
+          name: "nvidia-api"
+          key: NVIDIA_API_KEY
+
+ingress:
+  enabled: true
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+
+deployment-management:
+  deployments:
+    defaultStorageClass: standard
