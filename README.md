@@ -13,8 +13,14 @@ Then start the Kubernetes pods with
 bash src/main.sh
 ```
 
-To alter the microservices and models (start of with Llama 3.1 8B) that are deployed just change:
+To alter the microservices and models (currently uses Llama 3.1 8B NIM) that are deployed just change:
 
 ```
 src/nemo-values.yaml
+```
+
+To clean up the cluster use:
+
+```
+bash src/clean_up_cluster.sh
 ```
