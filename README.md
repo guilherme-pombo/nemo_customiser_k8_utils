@@ -1,7 +1,6 @@
 # nemo_customiser_k8_utils
 
-Just a bunch of scripts and UIs to make using NeMo Customiser more friendly and less manual. 
-This requires NGC access, so first define:
+Just a bunch of scripts and UIs to make using NeMo Customiser more friendly and less manual. Mostly focused on minikube debugging. This requires NGC access, so first define:
 
 ```
 export NGC_API_KEY=
