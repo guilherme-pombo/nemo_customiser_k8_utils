@@ -10,7 +10,8 @@ export NVIDIA_API_KEY=
 Then start the Kubernetes pods with
 
 ```
-bash src/main.sh
+cd src/
+bash main.sh
 ```
 
 To alter the microservices and models (currently uses Llama 3.1 8B NIM) that are deployed just change:
