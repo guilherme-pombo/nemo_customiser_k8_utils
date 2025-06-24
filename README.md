@@ -42,6 +42,14 @@ To create an evaluation job for a particular model use
 bash create_evaluation_job.sh meta/llama-3.1-8b-instruct
 ```
 
+## Customise models
+
+To create an customisation job for a particular model use
+
+```
+bash customise_model.sh meta/llama-3.1-8b-instruct@v1.0.0+A100
+```
+
 ## Tear down
 
 To clean up the cluster use:
