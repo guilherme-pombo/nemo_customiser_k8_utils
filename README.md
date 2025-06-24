@@ -1,11 +1,17 @@
 # nemo_customiser_k8_utils
 
-Just a bunch of scripts and UIs to make using NeMo Customiser more friendly and less manual. Mostly focused on minikube debugging. This requires NGC access, so first define:
+Just a bunch of scripts and UIs to make using NeMo Customiser more friendly and less manual. Mostly focused on minikube debugging.
+
+## Environment variables
+
+This requires NGC access, so first define:
 
 ```
 export NGC_API_KEY=
 export NVIDIA_API_KEY=
 ```
+
+## Kubernetes deployment
 
 Then start the Kubernetes pods with
 
@@ -20,11 +26,23 @@ To alter the microservices and models (currently uses Llama 3.1 8B NIM) that are
 src/nemo-values.yaml
 ```
 
-Then to add a dataset to your cluster for custom evaluation
+## Adding datasets
+
+To add a dataset to your cluster for custom evaluation
 
 ```
 bash create_dataset.sh sample-basic-test ../sample_test_data default
 ```
+
+## Evaluate models
+
+To create an evaluation job for a particular model use
+
+```
+bash create_evaluation_job.sh meta/llama-3.1-8b-instruct
+```
+
+## Tear down
 
 To clean up the cluster use:
 
