@@ -20,8 +20,15 @@ To alter the microservices and models (currently uses Llama 3.1 8B NIM) that are
 src/nemo-values.yaml
 ```
 
+Then to add a dataset to your cluster for custom evaluation
+
+```
+bash create_dataset.sh sample-basic-test ../sample_test_data default
+```
+
 To clean up the cluster use:
 
 ```
-bash src/clean_up_cluster.sh
+cd src/
+bash clean_up_cluster.sh
 ```
