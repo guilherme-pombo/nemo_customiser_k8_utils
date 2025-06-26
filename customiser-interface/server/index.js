@@ -156,6 +156,165 @@ function executeCommand(command, env = {}) {
   });
 }
 
+app.post('/api/evaluation/targets', async (req, res) => {
+  try {
+    const response = await fetch('http://nemo.test/v1/evaluation/targets', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req.body)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    res.json(result);
+  } catch (error) {
+    console.error('Evaluation target error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Create evaluation config
+app.post('/api/evaluation/configs', async (req, res) => {
+  try {
+    const response = await fetch('http://nemo.test/v1/evaluation/configs', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req.body)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    res.json(result);
+  } catch (error) {
+    console.error('Evaluation config error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Create evaluation job
+app.post('/api/evaluation/jobs', async (req, res) => {
+  try {
+    const response = await fetch('http://nemo.test/v1/evaluation/jobs', {
+      method: 'POST',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req.body)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    res.json(result);
+  } catch (error) {
+    console.error('Evaluation job error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get evaluation results
+app.get('/api/evaluation/jobs/:jobId/results', async (req, res) => {
+  try {
+    const { jobId } = req.params;
+    const response = await fetch(`http://nemo.test/v1/evaluation/jobs/${jobId}/results`, {
+      headers: {
+        'accept': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    res.json(result);
+  } catch (error) {
+    console.error('Evaluation results error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/customization/jobs', async (req, res) => {
+  try {
+    const response = await fetch('http://nemo.test/v1/customization/jobs', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(req.body)
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    res.json(result);
+  } catch (error) {
+    console.error('Customization job error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Get customization job status
+app.get('/api/customization/jobs/:jobId/status', async (req, res) => {
+  try {
+    const { jobId } = req.params;
+    const response = await fetch(`http://nemo.test/v1/customization/jobs/${jobId}/status`, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    res.json(result);
+  } catch (error) {
+    console.error('Customization status error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/customization/configs', async (req, res) => {
+  try {
+    const response = await fetch('http://nemo.test/v1/customization/configs', {
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    res.json(result);
+  } catch (error) {
+    console.error('Customization configs error:', error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${PORT}`);
 });
