@@ -99,6 +99,39 @@ parse_args() {
   done
 }
 
+setup_mlflow() {
+  log "Installing MLflow..."
+
+  # Install MLflow
+  helm install -n mlflow-system --create-namespace mlflow \
+    oci://registry-1.docker.io/bitnamicharts/mlflow \
+    --version 1.0.6 -f mlflow.values.yaml
+
+  # Wait for MLflow to be ready
+  log "Waiting for MLflow to be ready..."
+  kubectl wait --for=condition=available --timeout=600s deployment/mlflow-tracking -n mlflow-system
+
+  # Create MLflow secrets
+  log "Creating MLflow secrets..."
+
+  # Create MLflow credentials secret
+  kubectl create secret generic mlflow-credentials \
+    --from-literal=username="bn_mlflow" \
+    --from-literal=password="bn_mlflow" \
+    --namespace=mlflow-system \
+    --dry-run=client -o yaml | kubectl apply -f -
+
+  # Create customizer MLflow config secret  
+  kubectl create secret generic customizer-mlflow-config \
+    --from-literal=MLFLOW_URL="http://mlflow-tracking.mlflow-system.svc.cluster.local:80" \
+    --from-literal=MLFLOW_USERNAME="bn_mlflow" \
+    --from-literal=MLFLOW_PASSWORD="bn_mlflow" \
+    --namespace=default \
+    --dry-run=client -o yaml | kubectl apply -f -
+
+  log "MLflow setup complete!"
+}
+
 # === Diagnostic Functions ===
 collect_pod_diagnostics() {
   local pod=$1
@@ -719,6 +752,7 @@ main() {
   start_minikube
   # Ingress needs a few more seconds after it reports ready before the containers can get installed
   sleep 10
+  setup_mlflow
   setup_ngc_and_helm
   setup_nvcf_key
   install_nemo_microservices
@@ -732,3 +766,4 @@ main() {
 }
 
 main "$@"
+
