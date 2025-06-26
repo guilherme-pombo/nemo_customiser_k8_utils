@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DatasetUploader from './components/DatasetUploader';
 import EvaluationRunner from './components/EvaluationRunner';
 import ModelCustomizer from './components/ModelCustomizer';
+import MLflowViewer from './components/MLflowViewer';
 import './App.css';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
         <div className="container mx-auto">
           <header className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-800 mb-2">ML Ops Dashboard</h1>
-            <p className="text-gray-600">Upload datasets, run evaluations, and customize models</p>
+            <p className="text-gray-600">Upload datasets, run evaluations, customize models, and track experiments</p>
           </header>
           
           {/* Tab Navigation */}
@@ -49,6 +50,16 @@ function App() {
               >
                 Model Customizer
               </button>
+              <button
+                onClick={() => setActiveTab('mlflow')}
+                className={`px-6 py-2 rounded-md font-medium transition-colors ${
+                  activeTab === 'mlflow'
+                    ? 'bg-blue-500 text-white'
+                    : 'text-gray-600 hover:text-blue-500'
+                }`}
+              >
+                MLflow Viewer
+              </button>
             </div>
           </div>
 
@@ -56,6 +67,7 @@ function App() {
             {activeTab === 'datasets' && <DatasetUploader />}
             {activeTab === 'evaluation' && <EvaluationRunner />}
             {activeTab === 'customization' && <ModelCustomizer />}
+            {activeTab === 'mlflow' && <MLflowViewer />}
           </main>
         </div>
       </div>

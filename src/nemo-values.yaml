@@ -1,7 +1,7 @@
 existingSecret: ngc-api
 existingImagePullSecret: nvcrimagepullsecret
 
-
+# Data Store configuration
 data-store:
   enabled: true
   external:
@@ -10,6 +10,7 @@ data-store:
   persistence:
     size: 2Gi
 
+# Customizer configuration with MLflow integration
 customizer:
   enabled: true
   modelsStorage:
@@ -26,11 +27,18 @@ customizer:
       pvc:
         storageClass: "standard"
         volumeAccessMode: "ReadWriteOnce"
+    # MLflow integration configuration
+    mlflowSecretName: "customizer-mlflow-config"
+    mlflowURLKey: "MLFLOW_URL"
+    mlflowUsernameKey: "MLFLOW_USERNAME"
+    mlflowPasswordKey: "MLFLOW_PASSWORD"
 
+# Evaluator configuration
 evaluator:
   milvus:
     enabled: false
 
+# Guardrails configuration
 guardrails:
   env:
     DEMO: "True"
@@ -43,11 +51,13 @@ guardrails:
           name: "nvidia-api"
           key: NVIDIA_API_KEY
 
+# Ingress configuration
 ingress:
   enabled: true
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
 
+# Deployment management configuration
 deployment-management:
   deployments:
     defaultStorageClass: standard

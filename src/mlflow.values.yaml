@@ -1,0 +1,16 @@
+postgresql:
+  enabled: true
+  auth:
+    username: "bn_mlflow"
+    password: "bn_mlflow"
+tracking:
+  enabled: true
+  auth:
+    enabled: false
+  runUpgradeDB: false
+  service:
+    type: ClusterIP
+  resourcesPreset: medium
+run:
+  enabled: false
+
