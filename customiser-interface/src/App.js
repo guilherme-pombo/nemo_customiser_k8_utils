@@ -13,7 +13,7 @@ function App() {
       <div className="min-h-screen bg-gray-100 py-8">
         <div className="container mx-auto">
           <header className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">ML Ops Dashboard</h1>
+            <h1 className="text-4xl font-bold text-gray-800 mb-2">Model Distillation Dashboard</h1>
             <p className="text-gray-600">Upload datasets, run evaluations, customize models, and track experiments</p>
           </header>
           

@@ -27,11 +27,7 @@ customizer:
       pvc:
         storageClass: "standard"
         volumeAccessMode: "ReadWriteOnce"
-    # MLflow integration configuration
-    mlflowSecretName: "customizer-mlflow-config"
-    mlflowURLKey: "MLFLOW_URL"
-    mlflowUsernameKey: "MLFLOW_USERNAME"
-    mlflowPasswordKey: "MLFLOW_PASSWORD"
+    mlflowURL: "http://mlflow-tracking.mlflow-system.svc.cluster.local:80"
 
 # Evaluator configuration
 evaluator:
