@@ -2,6 +2,15 @@
 
 Just a bunch of scripts and UIs to make using NeMo Customiser more friendly and less manual. Mostly focused on minikube debugging.
 
+## CUDA Driver
+
+If on Brev machines you'll need to update your CUDA driver:
+
+```
+cd src/
+bash update_drivers_to_560.sh
+```
+
 ## Environment variables
 
 This requires NGC access, so first define:
