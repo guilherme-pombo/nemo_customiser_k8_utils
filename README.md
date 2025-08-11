@@ -20,6 +20,27 @@ export NGC_API_KEY=
 export NVIDIA_API_KEY=
 ```
 
+If only using docker to distill you can do:
+
+```
+docker login nvcr.io -u '$oauthtoken' -p "$NGC_API_KEY"
+```
+
+and then:
+
+```
+export LOCAL_NIM_CACHE=~/.cache/nim
+mkdir -p "$LOCAL_NIM_CACHE"
+docker run -it --rm \
+    --gpus all \
+    --shm-size=16GB \
+    -e NGC_API_KEY \
+    -v "$LOCAL_NIM_CACHE:/opt/nim/.cache" \
+    -u $(id -u) \
+    -p 8000:8000 \
+    nvcr.io/nim/nvidia/llama-3.3-nemotron-super-49b-v1:latest
+```
+
 ## Kubernetes deployment
 
 Then start the Kubernetes pods with
