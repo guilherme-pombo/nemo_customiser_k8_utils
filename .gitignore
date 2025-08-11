@@ -1,0 +1,4 @@
+src/nemo-microservices-helm-chart
+src/nemo-errors*
+nemoms_pythonsdk_lora/data
+*/__pycache__/*
