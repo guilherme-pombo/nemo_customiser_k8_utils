@@ -13,8 +13,8 @@ NIM_URL = "http://nim.test" # NIM
 NDS_TOKEN = "token"
 
 # (Optional) Use a dedicated namespace and dataset name for tutorial assets
-NMS_NAMESPACE = "xlam-tutorial-ns"
-DATASET_NAME = "xlam-ft-dataset"
+NMS_NAMESPACE = "lora-tutorial-ns"
+DATASET_NAME = "news-lora-dataset"
 
 # (Optional) Configure the base model. Must be one supported by the NeMo Customizer deployment!
 BASE_MODEL = "meta/llama-3.2-1b-instruct"
