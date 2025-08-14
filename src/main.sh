@@ -3,6 +3,11 @@ chmod +x install_minikube.sh create-nmp-deployment.sh
 # Install minikube and dependencies
 ./install_minikube.sh
 
+echo 'export PATH="/home/ubuntu/apps:$PATH"' >> ~/.bashrc
+echo 'export PATH="/home/ubuntu/.local/bin:$PATH"' >> ~/.bashrc
+
+source ~/.bashrc
+
 # Deploy NeMo microservices with MLflow integration
 ./create-nmp-deployment.sh --values-file nemo-values.yaml --helm-chart-url https://helm.ngc.nvidia.com/nvidia/nemo-microservices/charts/nemo-microservices-helm-chart-25.6.0.tgz
 

@@ -21,7 +21,7 @@ customizer:
       meta/llama-3.2-1b-instruct@2.0:
         enabled: true
       meta/llama-3.1-8b-instruct@2.0:
-        enabled: true
+        enabled: false
   customizerConfig:
     training:
       pvc:
