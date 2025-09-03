@@ -1,0 +1,9 @@
+{
+  "nds_url": "http://data-store.test",
+  "nemo_url": "http://nemo.test",
+  "nim_url": "http://nim.test",
+  "namespace": "lora-tutorial-ns",
+  "dataset_name": "news-lora-dataset-train-5k",
+  "base_model": "meta/llama-3.2-1b-instruct",
+  "base_model_version": "v1.0.0+A100",
+}
