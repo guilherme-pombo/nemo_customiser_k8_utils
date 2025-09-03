@@ -187,7 +187,8 @@ def run_customization_phase(manager: NeMoMicroservicesManager, config: Dict, arg
         return None
 
 
-def run_evaluation_phase(manager: NeMoMicroservicesManager, config: Dict, args: argparse.Namespace, model_name: Optional[str] = None) -> Dict:
+def run_evaluation_phase(manager: NeMoMicroservicesManager, config: Dict, 
+                         args: argparse.Namespace, model_name: Optional[str] = None) -> Dict:
     """Run the model evaluation phase"""
     
     if not args.evaluate:
@@ -214,7 +215,7 @@ def run_evaluation_phase(manager: NeMoMicroservicesManager, config: Dict, args: 
             model=eval_model,
             dataset_namespace=config['namespace'],
             dataset_name=config['dataset_name'],
-            test_file_path="testing/test.jsonl",
+            test_file_path="testing",
             limit=args.eval_samples,
             parallelism=args.eval_parallelism,
             max_tokens=args.eval_max_tokens,
@@ -342,7 +343,7 @@ def main():
     parser.add_argument("--eval-max-tokens", type=int, default=20, help="Max tokens for evaluation")
     parser.add_argument("--eval-temperature", type=float, default=0.7, help="Temperature for evaluation")
     parser.add_argument("--eval-top-p", type=float, default=0.9, help="Top-p for evaluation")
-    parser.add_argument("--evaluation-timeout", type=int, default=600, help="Evaluation timeout in seconds")
+    parser.add_argument("--evaluation-timeout", type=int, default=1200, help="Evaluation timeout in seconds")
     
     # General arguments
     parser.add_argument("--output-dir", type=str, default="output", help="Output directory for results")

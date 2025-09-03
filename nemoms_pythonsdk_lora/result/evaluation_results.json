@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "evaluation_result-TsHHC6PEHcx866e9Sr7cNP",
+  "description": null,
+  "type_prefix": null,
+  "namespace": "default",
+  "project": null,
+  "created_at": "2025-09-03T15:16:12.667226",
+  "updated_at": "2025-09-03T15:17:48.033447",
+  "custom_fields": {},
+  "ownership": null,
+  "job": "eval-XVEY9BtEywYBYbc2epTqq8",
+  "tasks": {
+    "qa": {
+      "metrics": {
+        "f1": {
+          "scores": {
+            "f1_score": {
+              "value": 0.8877200000000001,
+              "stats": {
+                "count": 5000,
+                "sum": 4438.6,
+                "sum_squared": null,
+                "min": null,
+                "max": null,
+                "mean": 0.8877200000000001,
+                "variance": null,
+                "stddev": null,
+                "stderr": null
+              }
+            }
+          }
+        },
+        "string-check": {
+          "scores": {
+            "string-check": {
+              "value": 0.8874,
+              "stats": {
+                "count": 5000,
+                "sum": 4437.0,
+                "sum_squared": null,
+                "min": null,
+                "max": null,
+                "mean": 0.8874,
+                "variance": null,
+                "stddev": null,
+                "stderr": null
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "groups": {},
+  "files_url": null
+}

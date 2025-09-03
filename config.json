@@ -3,7 +3,8 @@
   "nemo_url": "http://nemo.test",
   "nim_url": "http://nim.test",
   "namespace": "lora-tutorial-ns",
-  "dataset_name": "news-lora-dataset-train-5k",
+  "dataset_name": "news-lora-dataset-train-all",
   "base_model": "meta/llama-3.2-1b-instruct",
   "base_model_version": "v1.0.0+A100",
+  "wandb_api_key":"e0dae5c27937567b0d7c792082d063b2d7f7eed6"
 }

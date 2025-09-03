@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0",
+  "id": "eval-XVEY9BtEywYBYbc2epTqq8",
+  "description": null,
+  "type_prefix": "eval",
+  "namespace": "default",
+  "project": null,
+  "created_at": "2025-09-03T15:16:12.630194",
+  "updated_at": "2025-09-03T15:17:47.929355",
+  "custom_fields": {},
+  "ownership": null,
+  "status": "created",
+  "status_details": {
+    "message": null,
+    "task_status": {
+      "qa": "completed"
+    },
+    "progress": 99.99999999999724,
+    "samples_processed": 5000
+  },
+  "config": {
+    "schema_version": "1.0",
+    "id": "eval-config-PAay45UojMstAvPrfkvAdE",
+    "description": null,
+    "type_prefix": "eval-config",
+    "namespace": "default",
+    "project": null,
+    "created_at": "2025-09-03T15:16:12.629758",
+    "updated_at": "2025-09-03T15:16:12.629762",
+    "custom_fields": {},
+    "ownership": null,
+    "name": "eval-config-PAay45UojMstAvPrfkvAdE",
+    "type": "custom",
+    "params": {
+      "parallelism": 8,
+      "request_timeout": null,
+      "max_retries": 1,
+      "limit_samples": null,
+      "max_tokens": null,
+      "temperature": null,
+      "top_p": null,
+      "stop": null,
+      "extra": null
+    },
+    "tasks": {
+      "qa": {
+        "type": "chat-completion",
+        "params": {
+          "template": {
+            "messages": [
+              {
+                "role": "user",
+                "content": "{{item.prompt}}"
+              }
+            ],
+            "max_tokens": 20,
+            "temperature": 0.7,
+            "top_p": 0.9
+          }
+        },
+        "metrics": {
+          "f1": {
+            "type": "f1",
+            "params": {
+              "ground_truth": "{{item.completion | trim}}"
+            }
+          },
+          "string-check": {
+            "type": "string-check",
+            "params": {
+              "check": [
+                "{{item.completion | trim}}",
+                "equals",
+                "{{output_text | trim}}"
+              ]
+            }
+          }
+        },
+        "dataset": {
+          "schema_version": "1.0",
+          "id": "dataset-UgbM5sVa4JAPMbo7YwUbZE",
+          "description": null,
+          "type_prefix": null,
+          "namespace": "default",
+          "project": null,
+          "created_at": "2025-09-03T15:16:12.629820",
+          "updated_at": "2025-09-03T15:16:12.629821",
+          "custom_fields": {},
+          "ownership": null,
+          "name": "dataset-UgbM5sVa4JAPMbo7YwUbZE",
+          "version_id": "main",
+          "version_tags": [],
+          "format": null,
+          "files_url": "hf://datasets/lora-tutorial-ns/news-lora-dataset-train-5k/testing",
+          "hf_endpoint": null,
+          "split": null,
+          "limit": null
+        }
+      }
+    },
+    "groups": null
+  },
+  "target": {
+    "schema_version": "1.0",
+    "id": "eval-target-Mpku2p5yvGtCEwCnGswjr9",
+    "description": null,
+    "type_prefix": "eval-target",
+    "namespace": "default",
+    "project": null,
+    "created_at": "2025-09-03T15:16:12.629891",
+    "updated_at": "2025-09-03T15:16:12.629891",
+    "custom_fields": {},
+    "ownership": null,
+    "name": "eval-target-Mpku2p5yvGtCEwCnGswjr9",
+    "type": "model",
+    "cached_outputs": null,
+    "model": "lora-tutorial-ns/llama-3.2-1b-custom@v1",
+    "retriever": null,
+    "rag": null,
+    "rows": null,
+    "dataset": null
+  },
+  "result": "evaluation_result-TsHHC6PEHcx866e9Sr7cNP",
+  "output_files_url": null
+}

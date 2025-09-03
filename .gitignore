@@ -2,3 +2,4 @@ src/nemo-microservices-helm-chart
 src/nemo-errors*
 */__pycache__/*
 *jsonl
+*.zip

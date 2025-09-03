@@ -323,7 +323,7 @@ class NeMoMicroservicesManager:
         logger.info(f"Created customization job: {customization.id}")
         return customization
 
-    def wait_for_customization(self, job_id: str, polling_interval: int = 10, timeout: int = 6000) -> Any:
+    def wait_for_customization(self, job_id: str, polling_interval: int = 100, timeout: int = 6000) -> Any:
         """
         Wait for customization job to complete
         
@@ -350,8 +350,11 @@ class NeMoMicroservicesManager:
                 progress = 0.0
                 if status == "running" and job.status_details:
                     progress = job.status_details.percentage_done or 0.0
-                
-                logger.info(f"Job {job_id} status: {status}, Progress: {progress:.1f}%")
+                    logger.info(f"Job {job_id} status: {status}, Progress: {progress:.1f}% \
+                                Steps Completed: {job.status_details.steps_completed}")
+
+                else:
+                    logger.info(f"Job {job_id} status: {status}")
                 sleep(polling_interval)
             else:
                 logger.warning(f"Unknown job status: {status}")
@@ -450,7 +453,7 @@ class NeMoMicroservicesManager:
                     },
                     "dataset": {
                         "files_url": f"hf://datasets/{dataset_namespace}/{dataset_name}/{test_file_path}",
-                        "limit": limit
+                        # "limit": limit
                     }
                 }
             }
