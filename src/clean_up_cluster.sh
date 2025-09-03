@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+export PATH="/home/ubuntu/apps:$PATH"
+export PATH="/home/ubuntu/.local/bin:$PATH"
 
 set -euo pipefail
 
