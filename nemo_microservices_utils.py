@@ -220,27 +220,33 @@ class NeMoMicroservicesManager:
         """
         if additional_envs is None:
             additional_envs = {"NIM_GUIDED_DECODING_BACKEND": "fast_outlines"}
-        
-        deployment = self.client.deployment.model_deployments.create(
-            name=model_name,
-            namespace=namespace,
-            config={
-                "model": base_model,
-                "nim_deployment": {
-                    "image_name": image_name,
-                    "image_tag": image_tag,
-                    "pvc_size": pvc_size,
-                    "gpu": gpu,
-                    "additional_envs": additional_envs
+        try:
+            deployment = self.client.deployment.model_deployments.create(
+                name=model_name,
+                namespace=namespace,
+                config={
+                    "model": base_model,
+                    "nim_deployment": {
+                        "image_name": image_name,
+                        "image_tag": image_tag,
+                        "pvc_size": pvc_size,
+                        "gpu": gpu,
+                        "additional_envs": additional_envs
+                    }
                 }
-            }
-        )
-        logger.info(f"Created deployment: {model_name} in namespace {namespace}")
+            )
+            logger.info(f"Created deployment: {model_name} in namespace {namespace}")
+
+            if wait:
+                deployment = self.wait_for_deployment(model_name, namespace, timeout)
+            return deployment
         
-        if wait:
-            deployment = self.wait_for_deployment(model_name, namespace, timeout)
-        
-        return deployment
+        except Exception as e:
+            if "500" in str(e):
+                logger.error(f"model deployment already exists!")
+                deployment = self.client.deployment.model_deployments.retrieve(namespace=namespace,
+                                                                               deployment_name=model_name)
+            return deployment
 
     def wait_for_deployment(self, model_name: str, namespace: str, timeout: int = 600) -> Any:
         """
@@ -259,7 +265,7 @@ class NeMoMicroservicesManager:
         while time() - start_time < timeout:
             try:
                 deployment = self.client.deployment.model_deployments.retrieve(
-                    name=model_name,
+                    deployment_name=model_name,
                     namespace=namespace
                 )
                 
