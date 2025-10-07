@@ -3,3 +3,4 @@ src/nemo-errors*
 */__pycache__/*
 *jsonl
 *.zip
+venv
