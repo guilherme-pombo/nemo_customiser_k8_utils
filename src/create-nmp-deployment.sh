@@ -223,7 +223,7 @@ check_prereqs() {
   valid_gpus=0
   while IFS= read -r gpu; do
     log "Checking GPU: $gpu"
-    if [[ "$gpu" == *"A100"*"80GB"* ]] || [[ "$gpu" == *"H100"*"80GB"* ]] || [[ "$gpu" == *"6000"* ]] || [[ "$gpu" == *"5880"* ]]; then
+    if [[ "$gpu" == *"A100"*"80GB"* ]] || [[ "$gpu" == *"H100"* ]] || [[ "$gpu" == *"H200"* ]] || [[ "$gpu" == *"6000"* ]] || [[ "$gpu" == *"5880"* ]]; then
       log "Found valid GPU: $gpu"
       valid_gpus=$((valid_gpus + 1))
     fi
