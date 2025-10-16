@@ -46,7 +46,7 @@ echo "All tools verified successfully!"
 
 # Deploy NeMo microservices with MLflow integration
 echo "Deploying NeMo microservices..."
-./create-nmp-deployment.sh --values-file nemo-values.yaml --helm-chart-url https://helm.ngc.nvidia.com/nvidia/nemo-microservices/charts/nemo-microservices-helm-chart-25.8.0.tgz
+./create-nmp-deployment.sh --values-file nemo-values.yaml --helm-chart-url https://helm.ngc.nvidia.com/nvidia/nemo-microservices/charts/nemo-microservices-helm-chart-25.9.0.tgz
 
 # Add MLflow domain to /etc/hosts
 echo "Adding MLflow domain to /etc/hosts..."
